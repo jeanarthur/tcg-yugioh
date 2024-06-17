@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+src/assets/cards/*.jpg
+public/cards/*.jpg
 
 # Editor directories and files
 .vscode/*
