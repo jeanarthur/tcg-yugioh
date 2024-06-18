@@ -41,6 +41,7 @@ function Shop(){
 
     return(
         <>
+        
             <h1>Loja</h1>
             <Link to={'/'}>Página inicial</Link>
             <br />
