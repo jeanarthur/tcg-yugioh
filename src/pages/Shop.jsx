@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import YGODB from "../YGODB";
 import YGOApi from '../YGOApi';
+import Header from "../components/Header";
 
 function Shop(){
 
@@ -41,29 +42,38 @@ function Shop(){
 
     return(
         <>
-        
-            <h1>Loja</h1>
-            <Link to={'/'}>Página inicial</Link>
-            <br />
+        <div className="bg-black text-white h-screen">
+            <Header></Header>
+            <div className="grid grid-cols-4 gap-4 mt-4 justify-center items-center">
+                {
+                    cards?.length > 0 && cards.map((card, i) =>
+                        <>
+                            <img className="h-64 m-auto"
+                                key={card?.id} 
+                                src={"/cards/backcard.png"}
+                                alt={card?.name}
+                                onClick={((event)=>{
+                                    event.target.src = card?.image;
+                                    addToCollection(card);
+                                })}
+                            />
+                        </>
+                    )
+                }
+            </div>
             {
-               hasAllCollected && <button onClick={getPack}>Obter pacote</button>
+               hasAllCollected && 
+               <div className="w-full flex justify-center">
+                <button className="text-white m-4
+                    flex justify-center uppercase px-3 py-2 text-sm font-regular rounded-xl
+                    hover:text-black border
+                    border-white hover:bg-white focus:ring-4 focus:outline-none
+                    focus:ring-white font-medium text-center me-2 mb-2 transition duration-300"
+                    onClick={getPack}>Abrir pacote
+                </button>
+               </div>
             }
-            {
-                cards?.length > 0 && cards.map((card, i) =>
-                    <>
-                        <img 
-                            style={{width: 200+'px', height: 'auto'}} 
-                            key={card?.id} 
-                            src={"/cards/backcard.png"}
-                            alt={card?.name}
-                            onClick={((event)=>{
-                                event.target.src = card?.image;
-                                addToCollection(card);
-                            })}
-                        />
-                    </>
-                )
-            }
+        </div>
         </>
     )
 }

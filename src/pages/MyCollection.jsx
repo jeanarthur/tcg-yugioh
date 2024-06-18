@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 
 import YGODB from "../YGODB";
@@ -26,18 +26,19 @@ function MyCollection(){
 
     return(
         <>
-            <h1>Minha Coleção</h1>
-            <Link to={'/'}>Página inicial</Link>
-            <br />
+        <div className="bg-black text-white h-screen">
+            <Header></Header>
             {
                 filteredCards?.length > 0 && <Filter elements={cards} attribute="type" outCallback={setFilteredCards} />
             }
             <br />
-            {
-                filteredCards && filteredCards.slice(page, page + 18).map((card) => 
-                    <img style={{width: 200+'px', height: 'auto'}} key={card?.id} src={card?.image} alt={card?.name}/>
-                )
-            }
+            <div className="grid grid-cols-4 gap-4 justify-center items-center">
+                {
+                    filteredCards && filteredCards.slice(page, page + 18).map((card) => 
+                        <img className="h-64 m-auto" key={card?.id} src={card?.image} alt={card?.name}/>
+                    )
+                }
+            </div>
             {
                 filteredCards?.length == 0 && <h2>Coleção vazia</h2>
             }
@@ -45,6 +46,7 @@ function MyCollection(){
             <button onClick={()=>{setPage(page >= 18 ? page - 18 : 0)}}>Anterior</button>
             <br />
             <button onClick={()=>{setPage(page + 18 <= filteredCards?.length ? page + 18 : page)}}>Próximo</button>
+        </div>
         </>
     )
 }
