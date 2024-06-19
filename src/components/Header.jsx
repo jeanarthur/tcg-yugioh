@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Header() {
 
     return (
-        <navbar>
+        <>
             <div className='w-full py-3 border-b'>
 
                 <div className='flex justify-center items-center px-10 font-semibold'>
@@ -18,7 +18,7 @@ function Header() {
                 </div>
 
             </div>
-        </navbar>
+        </>
     )
 }
 export default Header;

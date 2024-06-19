@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import YGODB from "../YGODB";
@@ -48,8 +47,8 @@ function Shop(){
                 {
                     cards?.length > 0 && cards.map((card, i) =>
                         <>
-                            <img className="h-64 m-auto cursor-pointer"
-                                key={card?.id} 
+                            <img className={`h-64 m-auto ${card?.collected ? "" : "cursor-pointer"}`}
+                                key={card?.id + `_${i}`}
                                 src={"/cards/backcard.png"}
                                 alt={card?.name}
                                 onClick={((event)=>{
