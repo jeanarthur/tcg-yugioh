@@ -48,7 +48,7 @@ function Shop(){
                 {
                     cards?.length > 0 && cards.map((card, i) =>
                         <>
-                            <img className="h-64 m-auto"
+                            <img className="h-64 m-auto cursor-pointer"
                                 key={card?.id} 
                                 src={"/cards/backcard.png"}
                                 alt={card?.name}
