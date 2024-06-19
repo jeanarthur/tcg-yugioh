@@ -42,9 +42,9 @@ function Shop(){
 
     return(
         <>
-        <div className="bg-black text-white h-screen">
+        <div className="bg-black text-white h-screen overflow-auto">
             <Header></Header>
-            <div className="grid grid-cols-4 gap-4 mt-4 justify-center items-center">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 justify-center items-center mt-4">
                 {
                     cards?.length > 0 && cards.map((card, i) =>
                         <>

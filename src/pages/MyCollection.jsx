@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import YGODB from "../YGODB";
 import Filter from "../components/Filter";
 
-function MyCollection(){
+function MyCollection() {
 
     const [cards, setCards] = useState();
     const [filteredCards, setFilteredCards] = useState();
     const [page, setPage] = useState(0);
 
-    if (!cards){
+    if (!cards) {
         YGODB.getCardCollection(setCards);
     }
 
@@ -19,34 +19,34 @@ function MyCollection(){
     }, [cards]);
 
     useEffect(() => {
-        if (filteredCards?.length === 0){
+        if (filteredCards?.length === 0) {
             setFilteredCards(cards);
         }
     }, [filteredCards])
 
-    return(
+    return (
         <>
-        <div className="bg-black text-white h-screen">
-            <Header></Header>
-            {
-                filteredCards?.length > 0 && <Filter elements={cards} attribute="type" outCallback={setFilteredCards} />
-            }
-            <br />
-            <div className="grid grid-cols-4 gap-4 justify-center items-center">
+            <div className="bg-black text-white h-screen overflow-auto">
+                <Header></Header>
                 {
-                    filteredCards && filteredCards.slice(page, page + 18).map((card) => 
-                        <img className="h-64 m-auto" key={card?.id} src={card?.image} alt={card?.name}/>
-                    )
+                    filteredCards?.length > 0 && <Filter elements={cards} attribute="type" outCallback={setFilteredCards} />
                 }
+                <br />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 justify-center items-center">
+                    {
+                        filteredCards && filteredCards.slice(page, page + 12).map((card) =>
+                            <img className="h-64 m-auto" key={card?.id} src={card?.image} alt={card?.name} />
+                        )
+                    }
+                </div>
+                {
+                    filteredCards?.length == 0 && <h2>Coleção vazia</h2>
+                }
+                <br />
+                <button onClick={() => { setPage(page >= 18 ? page - 18 : 0) }}>Anterior</button>
+                <br />
+                <button onClick={() => { setPage(page + 18 <= filteredCards?.length ? page + 18 : page) }}>Próximo</button>
             </div>
-            {
-                filteredCards?.length == 0 && <h2>Coleção vazia</h2>
-            }
-            <br />
-            <button onClick={()=>{setPage(page >= 18 ? page - 18 : 0)}}>Anterior</button>
-            <br />
-            <button onClick={()=>{setPage(page + 18 <= filteredCards?.length ? page + 18 : page)}}>Próximo</button>
-        </div>
         </>
     )
 }
