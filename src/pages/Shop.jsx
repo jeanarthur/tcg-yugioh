@@ -63,7 +63,7 @@ function Shop(){
             </div>
             {
                hasAllCollected && 
-               <div className="w-full flex justify-center">
+               <div className="w-full flex justify-center px-20 pb-6 bottom-0 fixed bg-black h-fit">
                 <button className="text-white m-4
                     flex justify-center uppercase px-3 py-2 text-sm font-regular rounded-xl
                     hover:text-black border
