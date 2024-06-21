@@ -13,16 +13,6 @@ const YGODB = {
             })
     },
 
-    getCardFromCollection: (setStateCallback, id) => {
-        axios.get(`http://localhost:3000/cardCollection/${id}`)
-            .then((res) => {
-                setStateCallback(res?.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-    },
-
     postCardInCollection: (card) => {
         hasCardInCollection(card.id)
             .then((has) => {
